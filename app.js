@@ -25,26 +25,35 @@ client.on("message", async(message) => {
         let font = message.content.split(" ")[1]
         if (fonts[font]) {
             currentFont = font
-            log(`current font is now '${font}'`)
             await message.edit(`${message.content}\nfont now set to ${makeFancy(font,fonts[font])}`)
-            setTimeout(() => message.delete(), 3000)
+            log(`current font is now '${font}'`)
+            setTimeout(async() => {
+                await message.delete();
+                log("deleted message")
+            }, 3000)
         }
         else {
-           await message.edit(`${message.content}\navailable fonts: ${Object.keys(fonts).map(f=>makeFancy(f,fonts[f])).join("\n")}`)
+            await message.edit(`${message.content}\navailable fonts: ${Object.keys(fonts).map(f=>makeFancy(f,fonts[f])).join("\n")}`)
             log(`font '${font}' does not exist`)
         }
     }
     else if (message.content.startsWith("!check")) {
         let font = message.content.split(" ")[1]
-        log(`check ${font}`)
         if (fonts[font]) {
-            message.edit(`${message.content}\n${fonts[font].join("")}`)
+            await message.edit(`${message.content}\n${fonts[font].join("")}`)
+            log(`check ${font}`)
         }
+        else {
+            await message.edit(`${message.content}\ncheck for '${font}' does not exist`)
+            log(`fontcheck for '${font}' does not exists`)
+        }
+
     }
     else if (currentFont !== "normal") {
-        log(`Fancy: ${message.content}`)
+
         let fancyMessage = makeFancy(message.content, fonts[currentFont])
-        message.edit(fancyMessage)
+        await message.edit(fancyMessage)
+        log(`Fancy: ${message.content}`)
     }
 })
 
