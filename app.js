@@ -56,7 +56,7 @@ client.on("message", async(message) => {
         await message.edit(`${message.content}\n reloaded fonts file`)
         log("reloaded fonts")
     }
-    else if (currentFont !== "normal" || message.content) {
+    else if (currentFont !== "normal" && message.content) {
         let fancyMessage = makeFancy(message.content, fonts[currentFont])
         await message.edit(fancyMessage)
         log(`Fancy: ${message.content}`)
