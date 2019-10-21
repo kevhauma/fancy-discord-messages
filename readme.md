@@ -5,6 +5,7 @@ This selfbot changes your send messages to a fancy text, with multiple fonts ava
 
 # Installaton
 
+0. install Node.js
 1. remove `.sample` from `.env.sample`
 2. open `.env` 
 3. get your token here: https://github.com/appu1232/Discord-Selfbot/wiki/Installation-&-Setup#grab-your-token-from-discord
