@@ -22,9 +22,9 @@ function makeFancy(m, f) {
 client.on("message", async(message) => {
     if (message.author.id !== client.user.id) return
     if (message.content.startsWith("!font")) {
-        let font = message.content.split(" ")[1]
-        font = font ? font.toLowerCase() : null
-        if (fonts[font]) {
+        let font = message.content.split(" ")[1]        
+        font = font ? font.toLowerCase() : null        
+        if (font && fonts[font]) {
             currentFont = font
             await message.edit(`${message.content}\nfont now set to ${makeFancy(font,fonts[font])}`)
             log(`current font is now '${font}'`)
