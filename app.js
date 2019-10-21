@@ -52,6 +52,8 @@ client.on("message", async(message) => {
     else if (message.content.startsWith("!reload")) {
         delete require.cache[require.resolve('./fonts.json')]
         fonts = require("./fonts.json")
+        await message.edit(`${message.content}\n reloaded fonts file`)
+        log("reloaded fonts")
     }
     else if (currentFont !== "normal" || message.content) {
         let fancyMessage = makeFancy(message.content, fonts[currentFont])
